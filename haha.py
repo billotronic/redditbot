@@ -1,8 +1,10 @@
+# Importing requires modules
 import praw
 import requests
 from bs4 import BeautifulSoup
 
 # Reddit Authentication
+# Enter you keys here
 reddit = praw.Reddit(client_id="",
                      client_secret="",
                      password="",
@@ -10,9 +12,9 @@ reddit = praw.Reddit(client_id="",
                      username="")
 
 # Global Variable
-subreddit = reddit.subreddit('Nepal')
-keyphrase = "!covid"
-url = "https://covid19.mohp.gov.np/covid/api/confirmedcases"
+subreddit = reddit.subreddit('Nepal') # Configuring which subreddit to search
+keyphrase = "!covid" # Configuring which catchphrase to reply
+url = "https://covid19.mohp.gov.np/covid/api/confirmedcases" # Source of data
 
 
 # Getting data/numbers
@@ -36,10 +38,11 @@ def rep():
     return msg
 
 
+ # Searching Comments
 for comment in subreddit.stream.comments():
     if keyphrase in comment.body:
         print("Found one!")
         msg=(rep())
-        comment.reply(msg)
+        comment.reply(msg) # Replying to catchphrase
         print("replied")
 
