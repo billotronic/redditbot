@@ -64,9 +64,6 @@ def prev_data():
         i +=1
 
     msg = f'{total} {deaths} {recovered}'
-
-    print("previous data extracted")
-    print(msg)
     return msg
 
 while True:
@@ -77,8 +74,6 @@ while True:
     new_datal = new_data.split(' ')
     if new_datal[3] != db_data[1] or new_datal[2] != db_data[0]:
         msg = f"Total Positive Cases: {new_datal[2]}\n\nDeaths: {new_datal[3]}\n\nRecovered: {new_datal[4]}\n\nSamples Tested: {new_datal[0]}\n"
-        print("New data found.... Tweeting...")
-        print(new_datal,db_data)
         submission.edit(msg)
 
 
